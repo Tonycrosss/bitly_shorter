@@ -69,7 +69,7 @@ def main():
         bitlink = make_short_link(token, link)
         total_clicks = bitlink_clicks(token, bitlink)
         print(bitlink)
-    print(total_clicks)
+    print(f"Количество кликов на битли: {total_clicks}")
 
 
 if __name__ == '__main__':
