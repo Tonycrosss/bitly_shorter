@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import argparse
 
+
 class WrongLinkException(Exception):
     pass
 
@@ -17,9 +18,9 @@ def make_short_link(token, long_link):
     }
     response = requests.post(url, headers=headers, json=payload)
     if response.ok:
-      short_link = response.json()['id']
+        short_link = response.json()['id']
     else:
-      raise WrongLinkException("Wrong Link was written!")
+        raise WrongLinkException("Wrong Link was written!")
     return short_link
 
 
@@ -34,9 +35,9 @@ def bitlink_clicks(token, bitlink):
     }
     response = requests.get(url, headers=headers, json=payload)
     if response.ok:
-      total_clicks = response.json()['total_clicks']
+        total_clicks = response.json()['total_clicks']
     else:
-      raise WrongLinkException("Wrong Link was written!")
+        raise WrongLinkException("Wrong Link was written!")
     return total_clicks
 
 
@@ -63,11 +64,11 @@ def main():
     token = os.getenv("TOKEN")
     link = args.link
     if is_bitlink(token, link):
-      total_clicks = bitlink_clicks(token, link)
+        total_clicks = bitlink_clicks(token, link)
     else:
-      bitlink = make_short_link(token, link)
-      total_clicks = bitlink_clicks(token, bitlink)
-      print(bitlink)
+        bitlink = make_short_link(token, link)
+        total_clicks = bitlink_clicks(token, bitlink)
+        print(bitlink)
     print(total_clicks)
 
 
