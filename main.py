@@ -1,7 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
-
+import argparse
 
 class WrongLinkException(Exception):
     pass
@@ -49,10 +49,19 @@ def is_bitlink(token, link):
     return response.ok
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--link', '-l', type=str, help='Enter link to make it short',
+                        required=True)
+    args = parser.parse_args()
+    return args
+
+
 def main():
     load_dotenv()
+    args = parse_args()
     token = os.getenv("TOKEN")
-    link = input("Enter long link to make it short:\n")
+    link = args.link
     if is_bitlink(token, link):
       total_clicks = bitlink_clicks(token, link)
     else:
