@@ -1,6 +1,6 @@
 # Bitly url shorterer
 
-This program converts long links to short bit.ly links and prints it out  
+This program converts long links to short bit.ly links and prints it out 
 with total clicks of this link in a month  
 If link is already bit.ly short link - it returns only total clicks
 
